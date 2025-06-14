@@ -350,6 +350,7 @@ jobs:
         name: ${{ env.KERNEL_IMAGE_NAME }}${{ env.UPLOADNAME }}-${{ env.DEVICE }}-${{ env.BUILD_TIME }}
         path: kernel_workspace/android-kernel/out/arch/${{ env.ARCH }}/boot/${{ env.KERNEL_IMAGE_NAME }}
         if-no-files-found: error
+        overwrite: true
 
     - name: Upload AnyKernel3
       if: env.CHECK_FILE_IS_OK == 'true' && env.AK3_IS_OK == 'true'
@@ -358,6 +359,7 @@ jobs:
         name: AnyKernel3${{ env.UPLOADNAME }}-${{ env.DEVICE }}-${{ env.BUILD_TIME }}
         path: kernel_workspace/AnyKernel3/AnyKernel3.zip
         if-no-files-found: error
+        overwrite: true
 
     - name: Upload DTBO image
       if: env.CHECK_DTBO_IS_OK == 'true'
@@ -366,6 +368,7 @@ jobs:
         name: dtbo-${{ env.DEVICE }}-${{ env.BUILD_TIME }}
         path: kernel_workspace/android-kernel/out/arch/${{ env.ARCH }}/boot/dtbo.img
         if-no-files-found: error
+        overwrite: true
 
     - name: Upload KernelSU boot image
       if: env.MAKE_KERNELSU_BOOT_IMAGE_IS_OK == 'true'
@@ -374,6 +377,7 @@ jobs:
         name: boot${{ env.UPLOADNAME }}-${{ env.DEVICE }}-${{ env.BUILD_TIME }}
         path: kernel_workspace/bootimg_tmp/boot-kernelsu.img
         if-no-files-found: error
+        overwrite: true
 
     - name: Release
       uses: softprops/action-gh-release@master
